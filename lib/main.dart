@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MaterialApp(home: Home()));
 
@@ -37,49 +38,158 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.fromLTRB(8.0, 15.0, 8.0, 4.0),
-            child: TextField(
-              maxLines: 1,
-              controller: _decimal,
-              onChanged: _fromDec,
-              keyboardType: TextInputType.numberWithOptions(decimal: false),
-              decoration: InputDecoration(
-                labelText: "Decimal",
-                hintText: "0",
-                border: OutlineInputBorder(),
-              ),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  width: 70,
+                  height: 60,
+                  alignment: Alignment.center,
+                  child: Text(
+                    "DEC",
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.red[700],
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(4), topLeft: Radius.circular(4))),
+                ),
+                Expanded(
+                  child: TextField(
+                    maxLines: 1,
+                    controller: _decimal,
+                    onChanged: _fromDec,
+                    keyboardType: TextInputType.numberWithOptions(decimal: false),
+                    inputFormatters: [BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))],
+                    // inputFormatters: <TextInputFormatter>[
+                    //   WhitelistingTextInputFormatter.digitsOnly
+                    // ],
+                    decoration: InputDecoration(
+                        labelText: "Decimal",
+                        hintText: "0",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(4.0),
+                                bottomRight: Radius.circular(4.0)))),
+                  ),
+                ),
+              ],
             ),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
-            child: TextField(
-              maxLines: 1,
-              controller: _binary,
-              onChanged: _fromBin,
-              keyboardType: TextInputType.numberWithOptions(decimal: false),
-              decoration: InputDecoration(
-                  labelText: "Binário", hintText: "0", border: OutlineInputBorder()),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  width: 70,
+                  height: 60,
+                  alignment: Alignment.center,
+                  child: Text(
+                    "BIN",
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.red[700],
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(4), topLeft: Radius.circular(4))),
+                ),
+                Expanded(
+                  child: TextField(
+                    maxLines: 1,
+                    controller: _binary,
+                    onChanged: _fromBin,
+                    keyboardType: TextInputType.numberWithOptions(decimal: false),
+                    inputFormatters: [BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))],
+                    // inputFormatters: <TextInputFormatter>[
+                    //   WhitelistingTextInputFormatter.digitsOnly
+                    // ],
+                    decoration: InputDecoration(
+                        labelText: "Binário",
+                        hintText: "0",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(4.0),
+                                bottomRight: Radius.circular(4.0)))),
+                  ),
+                ),
+              ],
             ),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
-            child: TextField(
-              maxLines: 1,
-              controller: _octal,
-              onChanged: _fromOct,
-              keyboardType: TextInputType.numberWithOptions(decimal: false),
-              decoration:
-                  InputDecoration(labelText: "Octal", hintText: "0", border: OutlineInputBorder()),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  width: 70,
+                  height: 60,
+                  alignment: Alignment.center,
+                  child: Text(
+                    "OCT",
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.red[700],
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(4), topLeft: Radius.circular(4))),
+                ),
+                Expanded(
+                  child: TextField(
+                    maxLines: 1,
+                    controller: _octal,
+                    onChanged: _fromOct,
+                    keyboardType: TextInputType.numberWithOptions(decimal: false),
+                    inputFormatters: [BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))],
+                    // inputFormatters: <TextInputFormatter>[
+                    //   WhitelistingTextInputFormatter.digitsOnly
+                    // ],
+                    decoration: InputDecoration(
+                        labelText: "Octal",
+                        hintText: "0",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(4.0),
+                                bottomRight: Radius.circular(4.0)))),
+                  ),
+                ),
+              ],
             ),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
-            child: TextField(
-              maxLines: 1,
-              controller: _hexa,
-              onChanged: _fromHex,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                  labelText: "Hexadecimal", hintText: "0", border: OutlineInputBorder()),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  width: 70,
+                  height: 60,
+                  alignment: Alignment.center,
+                  child: Text(
+                    "HEX",
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.red[700],
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(4), topLeft: Radius.circular(4))),
+                ),
+                Expanded(
+                  child: TextField(
+                    maxLines: 1,
+                    controller: _hexa,
+                    onChanged: _fromHex,
+                    keyboardType: TextInputType.text,
+                    inputFormatters: [
+                      WhitelistingTextInputFormatter(RegExp(
+                          '[\\1, \\2, \\3, \\4, \\5, \\6, \\7, \\8, \\9, \\a, \\A, \\b, \\B, \\c, \\C, \\d, \\D, \\e, \\E, \\f, \\F]'))
+                    ],
+                    decoration: InputDecoration(
+                        labelText: "Hexadecimal",
+                        hintText: "0",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(4.0),
+                                bottomRight: Radius.circular(4.0)))),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
