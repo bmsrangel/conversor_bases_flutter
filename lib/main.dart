@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
             icon: Icon(Icons.refresh),
             onPressed: () {
               _clearAll();
-              FocusScope.of(context).detach();
+              FocusScope.of(context).dispose();
             },
             // Implementar key para identificar o pressionamento do botão e tirar foco
           )
@@ -178,7 +178,7 @@ class _HomeState extends State<Home> {
                     keyboardType: TextInputType.text,
                     inputFormatters: [
                       WhitelistingTextInputFormatter(RegExp(
-                          '[\\1, \\2, \\3, \\4, \\5, \\6, \\7, \\8, \\9, \\a, \\A, \\b, \\B, \\c, \\C, \\d, \\D, \\e, \\E, \\f, \\F]'))
+                          '[\0, \1, \2, \3, \4, \5, \6, \7, \8, \9, \a, \A, \b, \B, \c, \C, \d, \D, \e, \E, \f, \F]'))
                     ],
                     decoration: InputDecoration(
                         labelText: "Hexadecimal",

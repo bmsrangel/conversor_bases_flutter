@@ -13,4 +13,7 @@ Projeto em Flutter de aplicação conversora de Bases Numéricas. Até o momento
 - [ ] Suporte à outras Bases Numéricas
 - [ ] Seleção de/para
 
-
+## Bug Fix:
+- [ ] Binários aceitando valores maiores que 1
+- [ ] Octais aceitando valores maiores que 7
+- [ ] F não aceito pelo teclado
