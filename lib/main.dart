@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Conversor de Bases"),
+        title: Text("Conversor de Bases Numéricas"),
         centerTitle: true,
         backgroundColor: Colors.red[700],
         actions: <Widget>[
@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
             icon: Icon(Icons.refresh),
             onPressed: () {
               _clearAll();
-              FocusScope.of(context).dispose();
+              FocusScope.of(context).unfocus();
             },
             // Implementar key para identificar o pressionamento do botão e tirar foco
           )
@@ -46,20 +46,25 @@ class _HomeState extends State<Home> {
                   alignment: Alignment.center,
                   child: Text(
                     "DEC",
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                   decoration: BoxDecoration(
                       color: Colors.red[700],
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(4), topLeft: Radius.circular(4))),
+                          bottomLeft: Radius.circular(4),
+                          topLeft: Radius.circular(4))),
                 ),
                 Expanded(
                   child: TextField(
                     maxLines: 1,
                     controller: _decimal,
                     onChanged: _fromDec,
-                    keyboardType: TextInputType.numberWithOptions(decimal: false),
-                    inputFormatters: [BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))],
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: false),
+                    inputFormatters: [
+                      BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))
+                    ],
                     // inputFormatters: <TextInputFormatter>[
                     //   WhitelistingTextInputFormatter.digitsOnly
                     // ],
@@ -85,20 +90,25 @@ class _HomeState extends State<Home> {
                   alignment: Alignment.center,
                   child: Text(
                     "BIN",
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                   decoration: BoxDecoration(
                       color: Colors.red[700],
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(4), topLeft: Radius.circular(4))),
+                          bottomLeft: Radius.circular(4),
+                          topLeft: Radius.circular(4))),
                 ),
                 Expanded(
                   child: TextField(
                     maxLines: 1,
                     controller: _binary,
                     onChanged: _fromBin,
-                    keyboardType: TextInputType.numberWithOptions(decimal: false),
-                    inputFormatters: [BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))],
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: false),
+                    inputFormatters: [
+                      BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))
+                    ],
                     // inputFormatters: <TextInputFormatter>[
                     //   WhitelistingTextInputFormatter.digitsOnly
                     // ],
@@ -124,20 +134,25 @@ class _HomeState extends State<Home> {
                   alignment: Alignment.center,
                   child: Text(
                     "OCT",
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                   decoration: BoxDecoration(
                       color: Colors.red[700],
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(4), topLeft: Radius.circular(4))),
+                          bottomLeft: Radius.circular(4),
+                          topLeft: Radius.circular(4))),
                 ),
                 Expanded(
                   child: TextField(
                     maxLines: 1,
                     controller: _octal,
                     onChanged: _fromOct,
-                    keyboardType: TextInputType.numberWithOptions(decimal: false),
-                    inputFormatters: [BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))],
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: false),
+                    inputFormatters: [
+                      BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))
+                    ],
                     // inputFormatters: <TextInputFormatter>[
                     //   WhitelistingTextInputFormatter.digitsOnly
                     // ],
@@ -163,12 +178,14 @@ class _HomeState extends State<Home> {
                   alignment: Alignment.center,
                   child: Text(
                     "HEX",
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                   decoration: BoxDecoration(
                       color: Colors.red[700],
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(4), topLeft: Radius.circular(4))),
+                          bottomLeft: Radius.circular(4),
+                          topLeft: Radius.circular(4))),
                 ),
                 Expanded(
                   child: TextField(
@@ -176,9 +193,13 @@ class _HomeState extends State<Home> {
                     controller: _hexa,
                     onChanged: _fromHex,
                     keyboardType: TextInputType.text,
+                    textCapitalization: TextCapitalization.characters,
                     inputFormatters: [
-                      WhitelistingTextInputFormatter(RegExp(
-                          '[\0, \1, \2, \3, \4, \5, \6, \7, \8, \9, \a, \A, \b, \B, \c, \C, \d, \D, \e, \E, \f, \F]'))
+                      WhitelistingTextInputFormatter(
+                        RegExp(
+                            '[\0, \1, \2, \3, \4, \5, \6, \7, \8, \9, \a, \A, \b, \B, \c, \C, \d, \D, \e, \E, \f, \F]',
+                            caseSensitive: false),
+                      )
                     ],
                     decoration: InputDecoration(
                         labelText: "Hexadecimal",
@@ -246,9 +267,15 @@ class _HomeState extends State<Home> {
   }
 
   void _fromHex(String text) {
-    Map<String, int> especiais = {"A": 10, "B": 11, "C": 12, "D": 13, "E": 14, "F": 15};
+    Map<String, int> especiais = {
+      "A": 10,
+      "B": 11,
+      "C": 12,
+      "D": 13,
+      "E": 14,
+      "F": 15
+    };
     int exp = text.length - 1;
-    print(exp);
     int res = 0;
     for (var i = 0; i < text.length; i++) {
       if (especiais.containsKey(text[i].toUpperCase())) {
@@ -299,7 +326,14 @@ class _HomeState extends State<Home> {
   }
 
   String _dec2hex(String text) {
-    Map<int, String> especiais = {10: "A", 11: "B", 12: "C", 13: "D", 14: "E", 15: "F"};
+    Map<int, String> especiais = {
+      10: "A",
+      11: "B",
+      12: "C",
+      13: "D",
+      14: "E",
+      15: "F"
+    };
     String res = '';
     int dec = int.parse(text), aux;
     while (dec >= 1) {
