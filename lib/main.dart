@@ -29,7 +29,6 @@ class _HomeState extends State<Home> {
               _clearAll();
               FocusScope.of(context).unfocus();
             },
-            // Implementar key para identificar o pressionamento do botão e tirar foco
           )
         ],
       ),
@@ -63,7 +62,11 @@ class _HomeState extends State<Home> {
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: false),
                     inputFormatters: [
-                      BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))
+                      WhitelistingTextInputFormatter(
+                        RegExp(
+                          '[\0, \1, \2, \3, \4, \5, \6, \7, \8, \9,]',
+                        ),
+                      )
                     ],
                     // inputFormatters: <TextInputFormatter>[
                     //   WhitelistingTextInputFormatter.digitsOnly
@@ -107,7 +110,9 @@ class _HomeState extends State<Home> {
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: false),
                     inputFormatters: [
-                      BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))
+                      WhitelistingTextInputFormatter(
+                        RegExp('[\0, \1]'),
+                      )
                     ],
                     // inputFormatters: <TextInputFormatter>[
                     //   WhitelistingTextInputFormatter.digitsOnly
@@ -151,7 +156,10 @@ class _HomeState extends State<Home> {
                     keyboardType:
                         TextInputType.numberWithOptions(decimal: false),
                     inputFormatters: [
-                      BlacklistingTextInputFormatter(RegExp('[\-, \ , \., \,]'))
+                      WhitelistingTextInputFormatter(
+                        RegExp('[\0, \1, \2, \3, \4, \5, \6, \7,]',
+                            caseSensitive: false),
+                      )
                     ],
                     // inputFormatters: <TextInputFormatter>[
                     //   WhitelistingTextInputFormatter.digitsOnly
